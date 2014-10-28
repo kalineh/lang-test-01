@@ -35,6 +35,7 @@
 %type <exprvec> call_args
 %type <bloc> program stmts block
 %type <stmt> stmt var_decl func_decl
+%type <token> comparison
 
 %left TPLUS TMINUS
 %left TMUL TDIV
