@@ -481,7 +481,7 @@ char *yytext;
 #include "parser.hpp"
 #define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 #define TOKEN(t) (yylval.token = t)
-extern "C" int yywrap() { }
+extern "C" int yywrap() { return 0; }
 #line 486 "tokens.cpp"
 
 #define INITIAL 0

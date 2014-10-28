@@ -17,7 +17,7 @@ class Node
 {
 	public:
 		virtual ~Node() { }
-		virtual llvm::Value* codeGen(CodeGenContext& context);
+		virtual llvm::Value* codeGen(CodeGenContext& context) { return (llvm::Value*)0; }
 };
 
 class NExpression : public Node
@@ -106,8 +106,23 @@ class NBinaryOperator : public NExpression
 class NAssignment : public NExpression
 {
 	public:
+		NIdentifier& lhs;
+		NExpression& rhs;
+
+		NAssignment(NIdentifier& lhs, NExpression& rhs)
+			: lhs(lhs), rhs(rhs)
+		{
+		}
+
+		virtual llvm::Value* codeGen(CodeGenContext& context);
+};
+
+class NBlock : public NExpression
+{
+	public:
 		StatementList statements;
-		NAssignment() { }
+
+		NBlock() { }
 
 		virtual llvm::Value* codeGen(CodeGenContext& context);
 };

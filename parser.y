@@ -1,5 +1,6 @@
 %{
 	#include "node.h"
+	#include <stdio.h>
 
 	NBlock* programBlock;
 
@@ -18,8 +19,8 @@
 	NStatement* stmt;
 	NIdentifier* ident;
 	NVariableDeclaration* var_decl;
-	std::vector<NVariableDeclaration*> varvec;
-	std::vector<NExpression*> exprvec;
+	std::vector<NVariableDeclaration*>* varvec;
+	std::vector<NExpression*>* exprvec;
 	std::string* string;
 	int token;
 }
@@ -33,7 +34,7 @@
 %type <expr> numeric expr
 %type <varvec> func_decl_args
 %type <exprvec> call_args
-%type <bloc> program stmts block
+%type <block> program stmts block
 %type <stmt> stmt var_decl func_decl
 %type <token> comparison
 

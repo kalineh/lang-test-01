@@ -73,7 +73,7 @@ extern int yydebug;
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 14 "parser.y" /* yacc.c:1909  */
+#line 15 "parser.y" /* yacc.c:1909  */
 
 	Node* node;
 	NBlock* block;
@@ -81,8 +81,8 @@ union YYSTYPE
 	NStatement* stmt;
 	NIdentifier* ident;
 	NVariableDeclaration* var_decl;
-	std::vector<NVariableDeclaration*> varvec;
-	std::vector<NExpression*> exprvec;
+	std::vector<NVariableDeclaration*>* varvec;
+	std::vector<NExpression*>* exprvec;
 	std::string* string;
 	int token;
 
