@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include "node.h"
+#include "codegen.h"
 
 extern NBlock* programBlock;
 extern int yyparse();
