@@ -5,12 +5,13 @@
 #include <llvm/IR/Type.h>
 #include <llvm/IR/DerivedTypes.h>
 #include <llvm/IR/LLVMContext.h>
-#include <llvm/IR/PassManager.h>
+//#include <llvm/IR/PassManager.h>
+#include <llvm/PassManager.h>
 #include <llvm/IR/Instructions.h>
 #include <llvm/IR/CallingConv.h>
 #include <llvm/Bitcode/ReaderWriter.h>
 #include <llvm/IR/Verifier.h>
-//#include <llvm/Assembly/PrintModulePass.h>
+#include <llvm/IR/IRPrintingPasses.h>
 #include <llvm/IR/IRBuilder.h>
 //#include <llvm/ModuleProvider.h>
 #include <llvm/ExecutionEngine/GenericValue.h>

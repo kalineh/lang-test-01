@@ -3,8 +3,9 @@
 #include "codegen.h"
 #include "parser.hpp"
 
-#include <typeinfo>
+#include <llvm/PassManager.h>
 
+#include <typeinfo>
 using namespace std;
 
 void CodeGenContext::generateCode(NBlock& root)
@@ -23,9 +24,14 @@ void CodeGenContext::generateCode(NBlock& root)
 
 	std::cout << "Code generation complete.\n";
 
-	//llvm::PassManager pm;
-	//pm.add(createPrintModulePass(&outs()));
-	//pm.run(*module);
+	PassManager pm;
+	pm.add(createPrintModulePass(outs()));
+	pm.run(*module);
+
+	//Pass* printer = createPrintModulePass(outs());
+	//ModulePassManager pm;
+	//pm.addPass(printer);
+	//pm.run(module);
 }
 
 GenericValue CodeGenContext::runCode()
