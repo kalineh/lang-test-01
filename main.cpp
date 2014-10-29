@@ -7,8 +7,6 @@ extern int yyparse();
 extern void yyparse_init(const char*);
 extern void yyparse_cleanup();
 
-//typedef struct yy_buffer_state *YY_BUFFER_STATE;
-
 extern NBlock* programBlock;
 
 void createCoreFunctions(CodeGenContext& context) {}
@@ -27,7 +25,7 @@ int main(int argc, char** argv)
 
 		yyparse_init( argv[ 1 ] );
 		yyparse();
-		//yyparse_cleanup();
+		yyparse_cleanup();
 	}
 
 	std::cout << "Compilation complete: " << programBlock << std::endl;
