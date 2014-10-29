@@ -1,6 +1,7 @@
 lang-test-01
 ============
 
+<pre><code>
 kalin@minty ~/dev/lang-test-01 $ ./a.out test.lang 
 Compiling file test.lang
 Compilation complete: 0x20b21b0
@@ -68,3 +69,4 @@ entry:
 }
 Executing code...
 Code execution complete.
+</code></pre>
