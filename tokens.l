@@ -4,8 +4,31 @@
 #include "parser.hpp"
 #define SAVE_TOKEN yylval.string = new std::string(yytext, yyleng)
 #define TOKEN(t) (yylval.token = t)
-extern "C" int yywrap() { return 0; }
+
+static FILE* yyparse_file_ptr;
+
+void yyparse_init(const char* filename)
+{
+	yyparse_file_ptr = fopen(filename, "r");
+	yyin = yyparse_file_ptr;
+
+	return;
+	yyparse_file_ptr = fopen(filename, "r");
+	YY_BUFFER_STATE buffer = yy_create_buffer(yyparse_file_ptr, YY_BUF_SIZE);
+
+	yypush_buffer_state(buffer);
+	//yy_switch_to_buffer(buffer);
+}
+
+void yyparse_cleanup()
+{
+	fclose(yyparse_file_ptr);
+	//yypop_buffer_state();
+}
+
 %}
+
+%option noyywrap
 
 %%
 

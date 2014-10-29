@@ -3,12 +3,40 @@
 #include "node.h"
 #include "codegen.h"
 
-extern NBlock* programBlock;
 extern int yyparse();
+extern void yyparse_init(const char*);
+extern void yyparse_cleanup();
+
+//typedef struct yy_buffer_state *YY_BUFFER_STATE;
+
+extern NBlock* programBlock;
+
+void createCoreFunctions(CodeGenContext& context) {}
 
 int main(int argc, char** argv)
 {
-	yyparse();
-	std::cout << programBlock << std::endl;
+	if (argc <= 1)
+	{
+		std::cout << "error: no input files" << std::endl;
+		return -1;
+	}
+
+	for (int i = 1; i < argc; ++i)
+	{
+		std::cout << "Compiling file " << argv[i] << std::endl;
+
+		yyparse_init( argv[ 1 ] );
+		yyparse();
+		//yyparse_cleanup();
+	}
+
+	std::cout << "Compilation complete: " << programBlock << std::endl;
+
+	InitializeNativeTarget();
+	CodeGenContext context;
+	createCoreFunctions(context);
+	context.generateCode(*programBlock);
+	context.runCode();
+
 	return 0;
 }
